@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wealth Health Checkup</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F6F5;--surface:#FFFFFF;--ink:#0D2B2E;--muted:#5A6F71;--line:#D5E0DE;--brand:#0D4F52;--brand-ink:#FFFFFF;--red:#C4372C;--amber:#C98300;--green:#1E8A6B;--deep:#0A6B4E;--sel:#E3F1EE;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1819;--surface:#13282A;--ink:#E8F1EF;--muted:#93ABA8;--line:#264345;--brand:#4FB8AE;--brand-ink:#06201F;--red:#EF6B5F;--amber:#EBB13A;--green:#4CC4A0;--deep:#5BD6AE;--sel:#1B3A3C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1819;--surface:#13282A;--ink:#E8F1EF;--muted:#93ABA8;--line:#264345;--brand:#4FB8AE;--brand-ink:#06201F;--red:#EF6B5F;--amber:#EBB13A;--green:#4CC4A0;--deep:#5BD6AE;--sel:#1B3A3C;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;margin:0}
+.wrap{max-width:560px;margin:0 auto;padding:20px 18px 48px}
+.brand{font-size:14px;color:var(--muted);margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.sec{margin-top:18px}
+h1{font-size:32px;font-weight:700;margin-bottom:10px}
+h2{font-size:24px;font-weight:700}
+h3{font-size:19px;margin-bottom:12px}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+label.f{display:block;font-size:14px;font-weight:500;margin:14px 0 6px}
+input[type=text],input[type=tel]{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+input:focus,button:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.btn{display:block;width:100%;font:inherit;font-weight:700;padding:15px;border-radius:10px;border:0;background:var(--brand);color:var(--brand-ink);cursor:pointer;margin-top:18px}
+.btn.alt{background:transparent;color:var(--brand);border:1.5px solid var(--brand);margin-top:10px}
+a.btn{text-align:center;text-decoration:none}
+.link{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;padding:8px 0}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted);margin:16px 0 4px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--brand);transition:width .3s}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:8px}
+.q{font-size:23px;margin:4px 0 6px}
+.why{font-size:14px;color:var(--muted);margin-bottom:18px}
+.opt{display:block;width:100%;text-align:left;font:inherit;padding:15px 16px;margin-bottom:10px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;cursor:pointer}
+.opt:hover{border-color:var(--brand)}
+.opt.on{background:var(--sel);border-color:var(--brand)}
+.gauge{display:block;margin:0 auto;width:100%;max-width:320px}
+.score{font:700 54px "Source Serif 4",Georgia,serif;fill:var(--ink)}
+.zone{text-align:center;font-family:"Source Serif 4",Georgia,serif;font-size:26px;font-weight:700;margin:2px 0 6px}
+.zdesc{text-align:center;color:var(--muted);margin-bottom:6px}
+.cap{font-size:14px;background:var(--sel);border-radius:10px;padding:10px 12px;margin-top:12px}
+.area{margin-bottom:14px}
+.area .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+.area .t{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.area .t i{display:block;height:100%;border-radius:4px}
+.tip{border-left:4px solid var(--amber);padding:2px 0 2px 12px;margin-bottom:14px}
+.tip b{display:block}
+.tip span{font-size:14px;color:var(--muted)}
+.tip.lock{border-color:var(--line);opacity:.8}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;color:var(--muted);margin-top:14px}
+.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:var(--c)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin-top:14px}
+.chk input{margin-top:3px;width:18px;height:18px;flex:none}
+.err{color:var(--red);font-size:14px;margin-top:10px;min-height:20px}
+.rm{display:flex;flex-direction:column;gap:2px}
+.rm b{font-size:17px}
+.note{font-size:12px;color:var(--muted);margin-top:22px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Anand Rathi Share &amp; Stock Brokers</div>
+
+  <section id="start" class="card">
+    <h1>How healthy is your wealth?</h1>
+    <p class="muted">Answer a few quick questions on protection, savings, investing and planning. You get a score out of 100 and the fixes that matter most for you.</p>
+    <button class="btn" id="go">Start my checkup</button>
+    <div class="facts"><span>About 3 minutes</span><span>14 taps</span><span>No documents needed</span></div>
+  </section>
+
+  <section id="quiz" class="card" hidden>
+    <div class="meta"><span id="qn"></span><span id="qa"></span></div>
+    <div class="bar"><i id="pb"></i></div>
+    <h2 class="q" id="qt"></h2>
+    <p class="why" id="qw"></p>
+    <div id="opts"></div>
+    <button class="link" id="back">Back</button>
+  </section>
+
+  <section id="result" hidden>
+    <div class="card">
+      <svg class="gauge" viewBox="0 0 220 128" role="img" aria-label="Wealth health score">
+        <path d="M20 110 A90 90 0 0 1 200 110" fill="none" stroke="var(--line)" stroke-width="16" stroke-linecap="round"/>
+        <path id="arc" d="M20 110 A90 90 0 0 1 200 110" fill="none" stroke="var(--red)" stroke-width="16" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" style="transition:stroke-dashoffset 1.1s ease-out"/>
+        <text id="sc" class="score" x="110" y="104" text-anchor="middle">0</text>
+        <text x="110" y="124" text-anchor="middle" font-size="11" fill="var(--muted)">out of 100</text>
+      </svg>
+      <div class="zone" id="zn"></div>
+      <p class="zdesc" id="zd"></p>
+      <div class="cap" id="cap" hidden></div>
+      <div class="legend">
+        <span style="--c:var(--red)">0–29 Danger zone</span>
+        <span style="--c:var(--amber)">30–69 Caution, needs upgrading</span>
+        <span style="--c:var(--green)">70–89 Stable and growing</span>
+        <span style="--c:var(--deep)">90–100 Wealth ready</span>
+      </div>
+    </div>
+
+    <div class="card sec"><h3>Where you stand</h3><div id="areas"></div></div>
+
+    <div class="card sec">
+      <h3>Fix these first</h3>
+      <div id="tips"></div>
+    </div>
+
+    <div class="card sec">
+      <h3>Get your full report</h3>
+      <p class="muted" id="cta"></p>
+      <label class="f" for="nm">Your name</label>
+      <input type="text" id="nm" autocomplete="name" placeholder="e.g. Rajesh Kumar">
+      <label class="f" for="ph">Mobile number</label>
+      <input type="tel" id="ph" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10-digit number">
+      <label class="chk"><input type="checkbox" id="ok"><span>I agree to be contacted by Anand Rathi about my checkup result, on call or WhatsApp.</span></label>
+      <div class="err" id="err" role="alert"></div>
+      <button class="btn" id="wa" style="margin-top:6px">Send my report request on WhatsApp</button>
+    </div>
+
+    <div class="card sec rm">
+      <span class="muted" style="font-size:14px">Your relationship manager</span>
+      <b>Kiran Reddy K S</b>
+      <span>HNI-RM Assistant Manager</span>
+      <span class="muted">Anand Rathi Share &amp; Stock Brokers</span>
+      <a class="btn alt" href="tel:+918610729268">Call +91 86107 29268</a>
+      <button class="btn alt" id="again">Check another person</button>
+    </div>
+    <p class="note">This checkup is an educational self-assessment, not investment advice or a recommendation. Investments in securities markets are subject to market risks; read all related documents carefully.</p>
+  </section>
+</div>
+
+<script>
+const RM="918610729268";
+// Profile questions (unscored)
+const P=[
+{a:"About you",t:"Which describes you best?",w:"This sets the right questions for you.",o:["Salaried or professional","Business owner or HNI investor"]},
+{a:"About you",t:"What is your yearly income?",w:"Used to size your insurance cover.",o:["Below ₹10 lakh","₹10–25 lakh","₹25–50 lakh","₹50 lakh–1 crore","Above ₹1 crore"]},
+{a:"About you",t:"How many people depend on your income?",w:"Spouse, children, parents.",o:["None","1 or 2","3 or more"]},
+{a:"About you",t:"Roughly how much do you have invested today?",w:"Include mutual funds, stocks, FDs, gold and property.",o:["Below ₹5 lakh","₹5–25 lakh","₹25 lakh–1 crore","₹1–5 crore","Above ₹5 crore"]}
+];
+const INC=[7,17,37,75,150]; // mid-point of income band, in lakh
+// Scored questions: w = weight. Options are [text, fraction of weight]
+const C1=[
+{a:"Protection",w:14,t:"Do you have health insurance?",y:"One hospital stay can undo years of savings.",o:[["No health cover",0],["Only my employer’s group cover",.3],["Personal cover of ₹5–10 lakh",.65],["Family floater of ₹10 lakh or more, plus a top-up",1]],f:["Get a personal health cover","Employer cover ends when the job does. Take a personal family floater of ₹10 lakh or more with a super top-up."]},
+{a:"Protection",w:16,t:"Do you have term life insurance?",y:"It protects your family’s lifestyle, loans and goals if you are not there.",o:[["No term insurance",0],["Only endowment or money-back policies",.15],["Term cover below 10 times my annual income",.5],["Term cover of 15 times my income or more, covering my loans",1]],f:["Buy pure term insurance","Aim for a cover of about 15 times your annual income. Traditional policies rarely give enough cover."],term:1},
+{a:"Safety net",w:14,t:"Do you have an emergency fund?",y:"Money set aside for job loss, medical needs or urgent repairs.",o:[["No emergency fund",0],["Less than 3 months of expenses",.25],["3 to 6 months of expenses",.7],["6 months or more, in a liquid fund or sweep-in account",1]],f:["Build a 6-month emergency fund","Keep 6 months of expenses in a liquid fund or sweep-in FD, separate from your investments."]},
+{a:"Safety net",w:8,t:"How much of your monthly income goes to EMIs and loans?",y:"Expensive debt quietly eats the returns of everything you invest.",o:[["More than 50%, or I carry credit card dues",0],["40 to 50%",.3],["20 to 40%",.7],["Under 20%, or no loans",1]],f:["Bring EMIs below 30% of income","Clear credit card dues first, then prepay the highest-interest loan."]}];
+const SAL=[
+{a:"Growth",w:8,t:"How much of your income do you save every month?",y:"Saving rate matters more than returns in the early years.",o:[["Almost nothing",0],["Under 10%",.3],["10 to 20%",.65],["20 to 30%",.85],["More than 30%",1]],f:["Raise your savings rate to 20%","Save first and spend what is left. Automate the transfer on salary day."]},
+{a:"Growth",w:10,t:"Where are your investments today?",y:"The mix decides how safely your money grows.",o:[["I have no investments",0],["Mostly FD, gold, real estate or LIC",.3],["Some mutual funds or stocks, bought without a plan",.5],["Spread across equity, debt and gold with a set allocation",1]],f:["Spread across asset classes","Decide a mix of equity, debt and gold based on your goals, and rebalance once a year."]},
+{a:"Growth",w:8,t:"Do you invest through SIPs?",y:"A SIP turns saving into a habit and averages out market ups and downs.",o:[["No SIP",0],["Started and stopped, or irregular",.3],["Regular SIP, under 10% of income",.7],["Regular SIP of 10% or more, increased every year",1]],f:["Start or restart a monthly SIP","Begin with 10% of income and raise it 10% each year as your salary grows."]}];
+const HNI=[
+{a:"Growth",w:10,t:"How much of your wealth sits in one place, such as one business, property or stock?",y:"Concentration is the biggest hidden risk for wealthy families.",o:[["More than 70%",0],["50 to 70%",.3],["30 to 50%",.65],["Under 30%, well spread",1]],f:["Reduce concentration risk","Move part of the single biggest holding into diversified, liquid assets over time."]},
+{a:"Growth",w:8,t:"What happens to your surplus cash?",y:"Idle money loses to inflation every year.",o:[["Lies in savings or current accounts",0],["Some is idle, there is no plan",.4],["Surplus is parked in liquid or short-term debt funds",.8],["Surplus is laddered by goal and time horizon",1]],f:["Put idle cash to work","Match surplus to goals and time horizons: liquid, short-term debt, then long-term assets."]},
+{a:"Growth",w:8,t:"How do you plan your tax?",y:"What you keep after tax is what you can grow.",o:[["I pay as it comes",0],["Only 80C or ELSS at year end",.4],["Tax-efficient products, planned every year",.8],["Annual plan with my CA covering capital gains and asset structure",1]],f:["Plan tax through the year","Review capital gains, tax-efficient products and asset structure with your CA before March, not in it."]}];
+const C2=[
+{a:"Planning",w:8,t:"Do you have clear financial goals?",y:"Children’s education, a home, marriage, retirement. Goals give money a job.",o:[["No goals yet",0],["Vague ideas, no amounts",.3],["Goals with amounts, but no investments linked",.6],["Goals with amount, date and an investment for each",1]],f:["Put a number and a date on each goal","Write each goal with its cost in today’s money, the year, and one investment assigned to it."]},
+{a:"Planning",w:8,t:"Have you planned for retirement?",y:"No one gives you a salary after 60. Your corpus has to.",o:[["I haven’t thought about it",0],["Only EPF or PPF",.4],["Rough idea of the corpus, investing irregularly",.7],["Calculated corpus, investing for it every month",1]],f:["Calculate your retirement corpus","Estimate expenses at retirement with inflation, then back-solve the monthly investment."]}];
+const WILL_S={a:"Planning",w:6,t:"Do you have a will, nominations and a yearly review?",y:"Planning is incomplete if your family cannot claim it smoothly.",o:[["None of these",0],["Nominations on some accounts",.35],["Nominations everywhere, but no will",.7],["Will, nominations and a review at least once a year",1]],f:["Update nominations and write a will","Add nominees to every bank, demat, folio and policy. Make a will and review everything each year."]};
+const WILL_H={...WILL_S,t:"Is your succession plan in place?",y:"Wealth passes smoothly only when it is planned.",o:[["No will, nominations incomplete",0],["Nominations done, no will",.35],["Will in place, not reviewed",.7],["Will, nominations and a family trust or plan, reviewed yearly",1]],f:["Put a succession plan in place","Make a will, complete every nomination, and consider a family trust for larger or business assets."]};
+const ZONES=[
+ {max:29,n:"Danger zone",c:"var(--red)",d:"Your family and goals are exposed. A few basic steps can change this quickly."},
+ {max:69,n:"Caution: needs upgrading",c:"var(--amber)",d:"You have started well, but there are gaps. Guided planning will close them."},
+ {max:89,n:"Stable and growing",c:"var(--green)",d:"A solid base. Fine-tuning allocation and goals will take you further."},
+ {max:100,n:"Wealth ready",c:"var(--deep)",d:"Excellent discipline. Time to focus on tax efficiency, succession and growth."}];
+const $=id=>document.getElementById(id);
+let i=0,pa=[],sa=[],res={};
+const show=id=>["start","quiz","result"].forEach(s=>$(s).hidden=s!==id);
+const seg=()=>pa[0]===1?1:0;
+const scored=()=>[...C1,...(seg()?HNI:SAL),...C2,seg()?WILL_H:WILL_S];
+const TOTAL=14;
+function cur(){return i<4?P[i]:scored()[i-4]}
+$("go").onclick=()=>{i=0;pa=[];sa=[];render();show("quiz")};
+function render(){
+  const q=cur(),isP=i<4;
+  $("qn").textContent="Question "+(i+1)+" of "+TOTAL;
+  $("qa").textContent=q.a;
+  $("pb").style.width=(i/TOTAL*100)+"%";
+  $("qt").textContent=q.t;$("qw").textContent=isP?q.w:q.y;
+  const box=$("opts");box.innerHTML="";
+  const sel=isP?pa[i]:sa[i-4];
+  q.o.forEach((o,k)=>{
+    const b=document.createElement("button");
+    b.className="opt"+(sel===k?" on":"");b.textContent=isP?o:o[0];
+    b.onclick=()=>{if(isP)pa[i]=k;else sa[i-4]=k;b.classList.add("on");setTimeout(()=>{i<TOTAL-1?(i++,render()):finish()},180)};
+    box.appendChild(b);
+  });
+  $("back").hidden=i===0;
+}
+$("back").onclick=()=>{if(i>0){i--;render()}};
+const money=l=>l>=100?"₹"+(l/100).toFixed(l%100?1:0)+" crore":"₹"+Math.round(l)+" lakh";
+function finish(){
+  const Qs=scored();let tot=0,ar={},gaps=[],basics=false;
+  Qs.forEach((q,k)=>{const fr=q.o[sa[k]][1],s=q.w*fr;tot+=s;const a=ar[q.a]=ar[q.a]||[0,0];a[0]+=s;a[1]+=q.w;gaps.push({k,loss:q.w-s});
+    if(k<3&&fr===0)basics=true});
+  tot=Math.round(tot);let capped=false;
+  if(basics&&tot>69){tot=69;capped=true}
+  const z=ZONES.find(z=>tot<=z.max);
+  show("result");window.scrollTo(0,0);
+  $("sc").textContent=tot;$("zn").textContent=z.n;$("zn").style.color=z.c;$("zd").textContent=z.d;
+  $("cap").hidden=!capped;
+  if(capped)$("cap").textContent="Your score is held at the Caution level because a basic cover, health insurance, term insurance or an emergency fund, is missing.";
+  const arc=$("arc");arc.style.stroke=z.c;arc.style.strokeDashoffset=283;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>arc.style.strokeDashoffset=283*(1-tot/100)));
+  const ap={};
+  $("areas").innerHTML=Object.entries(ar).map(([n,v])=>{const p=Math.round(v[0]/v[1]*100);ap[n]=p;const c=p<40?"var(--red)":p<70?"var(--amber)":"var(--green)";
+    return '<div class="area"><div class="row"><span>'+n+'</span><span>'+p+'%</span></div><div class="t"><i style="width:'+p+'%;background:'+c+'"></i></div></div>'}).join("");
+  const weak=gaps.filter(g=>g.loss>=2).sort((a,b)=>b.loss-a.loss).slice(0,3);
+  const dep=pa[2]>0;
+  $("tips").innerHTML=weak.length?weak.map((g,n)=>{const q=Qs[g.k];let d=q.f[1];
+    if(q.term&&dep)d="For your income, aim for term cover of about "+money(INC[pa[1]]*15)+". "+d;
+    return n===0?'<div class="tip"><b>'+q.f[0]+'</b><span>'+d+'</span></div>':'<div class="tip lock"><b>'+q.f[0]+'</b><span>Full details are in your report below.</span></div>'}).join(""):'<p class="muted">No major gaps. A yearly review will keep it that way.</p>';
+  $("cta").textContent=tot<70?"Your report has all your fixes, a cover estimate for your income and a simple step-by-step plan. Send the request to Kiran and he will share it.":"Your report covers allocation, tax and goal tracking. Send the request to Kiran and he will share it.";
+  const weakAreas=Object.entries(ap).sort((a,b)=>a[1]-b[1]).slice(0,2).map(x=>x[0]+" "+x[1]+"%").join(", ");
+  res={tot,z:z.n,weakAreas,seg:seg()?"Business owner/HNI":"Salaried/professional",inc:P[1].o[pa[1]],dep:P[2].o[pa[2]],inv:P[3].o[pa[3]]};
+}
+$("ph").oninput=e=>e.target.value=e.target.value.replace(/\D/g,"");
+$("wa").onclick=()=>{
+  const n=$("nm").value.trim(),p=$("ph").value.trim();
+  const e=!n?"Please enter your name.":!/^[6-9]\d{9}$/.test(p)?"Please enter a valid 10-digit mobile number.":!$("ok").checked?"Please tick the consent box to continue.":"";
+  $("err").textContent=e;if(e)return;
+  const m="Hi Kiran, I’m "+n+" (mobile "+p+"). My Wealth Health score is "+res.tot+"/100 ("+res.z+"). Weakest areas: "+res.weakAreas+". Profile: "+res.seg+", income "+res.inc+", dependents "+res.dep+", invested "+res.inv+". Please send my full report and book a 15-minute review.";
+  window.open("https://wa.me/"+RM+"?text="+encodeURIComponent(m),"_blank");
+};
+$("again").onclick=()=>{$("nm").value="";$("ph").value="";$("ok").checked=false;$("err").textContent="";show("start");window.scrollTo(0,0)};
+</script>
+</body>
+</html>
